@@ -48,15 +48,31 @@ def main():
 
 	button_ok = driver.find_element_by_css_selector('.dialog_footer button')  # 获取确定按钮
 	button_ok.click()  # 点击确定
-	#driver.close()               # 关闭浏览器
+	driver.close()               # 关闭浏览器
+
+sign_in_morning = False
+sign_in_night = False
 
 if __name__ == '__main__':
 	while True:
 		time_now = datetime.datetime.now()
-		if time_now.hour == 8 and time_now.minute == 30 or time_now.hour == 21 and time_now.minute == 9:
-			main()
-			break
+		if time_now.hour == 8 or time_now.hour == 9 or time_now.hour == 10:
+			sign_in_morning = True
+			if sign_in_morning == True and sign_in_night == False:
+				main()
+				sign_in_morning = False
+				sign_in_night = True
+				print('早打卡完成')
+				time.sleep(3*60*60)
+		elif time_now.hour == 21 or time_now.hour == 22:
+			sign_in_night=True
+			if sign_in_night == True and sign_in_morning == False:
+				main()
+				sign_in_morning = True
+				sign_in_night = False
+				print('晚打卡完成')
+				time.sleep(3*60*60)
 		else:
 			print(time_now)
-			time.sleep(30)
+			time.sleep(60)
 			
