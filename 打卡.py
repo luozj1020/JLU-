@@ -33,8 +33,15 @@ def main():
 
 	driver.implicitly_wait(5)#隐式等待5秒
 
-	radio_button = driver.find_element_by_css_selector('[for="V1_CTRL53"]')# 获取校内按钮
-	radio_button.click()  # 点击校内
+	radio_button_1 = driver.find_element_by_css_selector('[for="V1_CTRL53"]')# 获取校内按钮
+	radio_button_1.click()  # 点击校内
+
+	js = 'var action=document.documentElement.scrollTop=10000'
+	# 设置滚动条距离顶部的位置，设置为 10000， 超过10000就是最底部
+	driver.execute_script(js)  # 执行脚本
+
+	radio_button_2 = driver.find_element_by_css_selector('[for="V1_CTRL28"]')# 获取正常按钮
+	radio_button_2.click()  # 点击正常
 
 	button_hand_in = driver.find_element_by_css_selector('.commandBar [class="command_button_content"]')  # 获取提交按钮
 	button_hand_in.click()  # 点击提交
@@ -46,8 +53,11 @@ def main():
 
 	driver.implicitly_wait(5)#隐式等待5秒
 
-	button_ok = driver.find_element_by_css_selector('.dialog_footer button')  # 获取确定按钮
+	button_ok = driver.find_element_by_css_selector('[class="dialog_button default fr"]')  # 获取确定按钮
 	button_ok.click()  # 点击确定
+
+	driver.implicitly_wait(5)#隐式等待5秒
+
 	driver.close()               # 关闭浏览器
 
 sign_in_morning = False
