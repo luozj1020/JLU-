@@ -29,7 +29,7 @@ def main():
 	username, password = get_up()#获取用户名和密码
 
 	url = 'https://ehall.jlu.edu.cn/infoplus/form/BKSMRDK/start'
-	driver.get_up(url)  # 打开Chrome
+	driver.get(url)  # 打开Chrome
 
 	wait = WebDriverWait(driver, 5)
 
