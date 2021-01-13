@@ -8,15 +8,19 @@
 具体见https://blog.csdn.net/weixin_44318830/article/details/103339273
 
 如果用其他浏览器则需要安装其他webdriver
-同时修改本程序第19行（例如火狐浏览器，将browser = webdriver.Chrome(executable_path = webdriver安装地址) 改为browser = webdriver.Firefox(executable_path = webdriver安装地址)
+同时修改本程序第19行（例如火狐浏览器，将browser = webdriver.Chrome(executable_path = webdriver安装地址) 改为browser = webdriver.Firefox(executable_path = r'webdriver安装地址')
 （目前selenium只支持谷歌，火狐和IE，不会真的有人还在用什么360，QQ浏览器吧[斜眼笑]）
+
+因为进行了可视化，使用了弹窗
+本程序采用win32
+在命令行中输入pip install win32即可安装相应库
 
 准备工作完成后，
 打开 用户名和密码.txt 文件，输入邮箱和密码（不要加回车！）
 打开命令行，将 打卡.py 拖进窗口，然后在文件名前加"python "（没有引号）
 按回车，程序开始运行
 
-默认设定是在早上八点到十一点和晚上九点到十一点自动打卡（如有另外需要，请修改第69和77行）
+默认设定是在早上八点到十一点和晚上九点到十一点自动打卡（如有另外需要，请修改第86和98行）
 程序开始运行后，不要关闭窗口，保持屏幕常亮（因为一旦熄屏校园网就会断，在家里应该不会有这个问题）
 
 第一次运行程序前建议先手动打卡一次，浏览器会保存cookie（就是你填的信息），本程序默认cookie已经存在
