@@ -25,7 +25,7 @@ def connection():	#判断网络是否连接
 		raise Exception('connect failed.')
 
 def main():
-	driver = webdriver.Chrome(executable_path = r'C:\Users\pc\anaconda3\Lib\site-packages\selenium\webdriver\chrome\chromedriver.exe')   # 声明一个浏览器对象   指定使用chromedriver.exe路径
+	driver = webdriver.Chrome(executable_path = r'D:\anaconda\Lib\site-packages\selenium\webdriver\chrome\chromedriver.exe')   # 声明一个浏览器对象   指定使用chromedriver.exe路径
 	username, password = get_up()#获取用户名和密码
 
 	url = 'https://ehall.jlu.edu.cn/infoplus/form/BKSMRDK/start'
@@ -42,13 +42,6 @@ def main():
 	button_log_in.click()  # 点击登录
 
 	driver.implicitly_wait(5)#隐式等待5秒
-
-	radio_button_1 = driver.find_element_by_css_selector('[for="V1_CTRL53"]')# 获取校内按钮
-	radio_button_1.click()  # 点击校内
-
-	js = 'var action=document.documentElement.scrollTop=10000'
-	# 设置滚动条距离顶部的位置，设置为 10000， 超过10000就是最底部
-	driver.execute_script(js)  # 执行脚本
 
 	radio_button_2 = driver.find_element_by_css_selector('[for="V1_CTRL28"]')# 获取正常按钮
 	radio_button_2.click()  # 点击正常
@@ -75,7 +68,8 @@ sign_in_night = False
 
 if __name__ == '__main__':
 	time_now = datetime.datetime.now()
-	if time_now.hour != 8 and time_now.hour != 9 and time_now.hour == 10 or time_now.hour != 21 and time_now.hour != 22:
+	print(time_now.hour)
+	if time_now.hour != 8 and time_now.hour != 9 and time_now.hour != 10 and time_now.hour != 21 and time_now.hour != 22:
 		print('当前不在打卡时段')
 		win32api.MessageBox(0, '当前不在打卡时段', '提示', win32con.MB_OK)
 
@@ -112,4 +106,3 @@ if __name__ == '__main__':
 		else:
 			print(time_now)
 			time.sleep(60)
-			
