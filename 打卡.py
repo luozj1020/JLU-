@@ -69,13 +69,13 @@ sign_in_night = False
 if __name__ == '__main__':
 	time_now = datetime.datetime.now()
 	print(time_now.hour)
-	if not 7 <= time_now.hour <= 10 and (time_now.hour != 21 and time_now.hour != 22):
+	if not 7 <= time_now.hour <= 11 or not 21 <= time_now.hour <= 23:
 		print('当前不在打卡时段')
 		win32api.MessageBox(0, '当前不在打卡时段', '提示', win32con.MB_OK)
 
 	while True:
 		time_now = datetime.datetime.now()
-		if 7 <= time_now.hour <= 10:
+		if 7 <= time_now.hour <= 11:
 			sign_in_morning = True
 			if sign_in_morning == True and sign_in_night == False:
 				try:
@@ -89,7 +89,7 @@ if __name__ == '__main__':
 					time.sleep(3*60*60)
 				except:
 					time.sleep(30)
-		elif time_now.hour == 21 or time_now.hour == 22:
+		elif 21 <= time_now.hour <= 23:
 			sign_in_night=True
 			if sign_in_night == True and sign_in_morning == False:
 				try:
