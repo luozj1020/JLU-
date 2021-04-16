@@ -69,7 +69,7 @@ sign_in_night = False
 if __name__ == '__main__':
 	time_now = datetime.datetime.now()
 	print(time_now.hour)
-	if not 7 <= time_now.hour <= 11 or not 21 <= time_now.hour <= 23:
+	if not 7 <= time_now.hour <= 11 and not 21 <= time_now.hour <= 23:
 		print('当前不在打卡时段')
 		win32api.MessageBox(0, '当前不在打卡时段', '提示', win32con.MB_OK)
 
