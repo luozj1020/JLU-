@@ -85,7 +85,6 @@ if __name__ == '__main__':
 					sign_in_night = True
 					print('早打卡完成')
 					win32api.MessageBox(0, '早打卡完成，完成时间：' + str(time_now), '提示', win32con.MB_OK)
-					continue
 					time.sleep(3*60*60)
 				except:
 					time.sleep(30)
