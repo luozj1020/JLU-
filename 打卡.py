@@ -67,14 +67,17 @@ sign_in_morning = False
 sign_in_night = False
 
 if __name__ == '__main__':
-	time_now = datetime.datetime.now()
-	print(time_now.hour)
-	if not 7 <= time_now.hour <= 11 and not 21 <= time_now.hour <= 23:
-		print('当前不在打卡时段')
-		win32api.MessageBox(0, '当前不在打卡时段', '提示', win32con.MB_OK)
-
 	while True:
 		time_now = datetime.datetime.now()
+		print(time_now.hour)
+		if not 7 <= time_now.hour <= 11 and not 21 <= time_now.hour <= 23:
+			print('当前不在打卡时段')
+			if 0 <= time_now.hour <= 6:
+				win32api.MessageBox(0, '当前不在打卡时段\n距离打卡时间还有'+str(7 - time_now.hour)+'小时'+str(60 - time_now.minute)+'分钟', '提示', win32con.MB_OK)
+				time.sleep((7 - time_now.hour - 1) * 60 * 60 + (60 - time_now.minute + 1) * 60)
+			if 12 <= time_now.hour <= 20:
+				win32api.MessageBox(0, '当前不在打卡时段\n距离打卡时间还有' + str(21 - time_now.hour) + '小时' + str(60 - time_now.minute) + '分钟', '提示', win32con.MB_OK)
+				time.sleep((21 - time_now.hour - 1) * 60 * 60 + (60 - time_now.minute + 1) * 60)
 		if 7 <= time_now.hour <= 11:
 			sign_in_morning = True
 			if sign_in_morning == True and sign_in_night == False:
@@ -85,7 +88,7 @@ if __name__ == '__main__':
 					sign_in_night = True
 					print('早打卡完成')
 					win32api.MessageBox(0, '早打卡完成，完成时间：' + str(time_now), '提示', win32con.MB_OK)
-					time.sleep(3*60*60)
+					time.sleep(5*60*60)
 				except:
 					time.sleep(30)
 		elif 21 <= time_now.hour <= 23:
